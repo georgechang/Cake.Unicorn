@@ -24,3 +24,5 @@ steps:
     command: 'pack'
     configuration: '$(buildConfiguration)'
     versioningScheme: byBuildNumber
+
+- task: PublishBuildArtifacts@1
