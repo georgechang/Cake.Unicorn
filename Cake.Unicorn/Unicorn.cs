@@ -12,13 +12,14 @@ namespace Cake.Unicorn
     public static class Unicorn
     {
         [CakeMethodAlias]
-        public static async void SyncUnicorn(this ICakeContext context, UnicornSettings settings)
+        public static void SyncUnicorn(this ICakeContext context, UnicornSettings settings)
         {
             var syncUrl = $"{settings.ControlPanelUrl}?verb={settings.Verb}&configuration={settings.GetParsedConfigurations()}&skipTransparentConfigs={settings.SkipTransparentConfigs}";
 
-            var challenge = await GetChallengeAsync(settings.ControlPanelUrl, context.Log);
+            var challenge = GetChallengeAsync(settings.ControlPanelUrl, context.Log).GetAwaiter().GetResult();
             var signature = CreateSignature(challenge, settings.SharedSecret, syncUrl, context.Log);
-            var response = await ExecuteUnicornAsync(syncUrl, signature, challenge, context.Log);
+            var response = ExecuteUnicornAsync(syncUrl, signature, challenge, context.Log).GetAwaiter().GetResult();
+            context.Log.Write(Verbosity.Normal, LogLevel.Information, response);
         }
 
         public static async Task<string> GetChallengeAsync(string controlPanelUrl, ICakeLog log)
