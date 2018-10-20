@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Cake.Unicorn</title>
+    <authors>George Chang</authors>
+    <owners>George Chang</owners>
+    <projectUrl>https://github.com/georgechang/Cake.Unicorn</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An add-in for Cake Build that executes a Unicorn sync for Sitecore.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags></tags>
+  </metadata>
+</package>
