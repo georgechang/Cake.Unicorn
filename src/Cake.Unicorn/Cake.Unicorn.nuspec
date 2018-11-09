@@ -7,11 +7,12 @@
     <authors>George Chang</authors>
     <owners>George Chang</owners>
     <projectUrl>https://github.com/georgechang/Cake.Unicorn</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An add-in for Cake Build that executes a Unicorn sync for Sitecore.</description>
     <releaseNotes>Initial release.</releaseNotes>
-    <copyright>Copyright 2018</copyright>
-    <tags></tags>
+    <copyright>Copyright 2018, George Chang</copyright>
+    <tags>cake sitecore unicorn</tags>
     <dependencies>
       <dependency id="MicroCHAP" version="1.2.2.2" />
     </dependencies>
