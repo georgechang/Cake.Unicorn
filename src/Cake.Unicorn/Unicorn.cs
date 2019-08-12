@@ -30,7 +30,7 @@ namespace Cake.Unicorn
             using (var client = new HttpClient())
             {
                 var challenge = await client.GetStringAsync($"{controlPanelUrl}?verb=Challenge");
-                log.Debug($"Received challenge from remote server: {challenge}");
+                log.Write(Verbosity.Diagnostic, LogLevel.Debug, $"Received challenge from remote server: {challenge}");
                 return challenge;
             }
         }
@@ -39,9 +39,9 @@ namespace Cake.Unicorn
         {
             var service = new SignatureService(sharedSecret);
             var signature = service.CreateSignature(challenge, syncUrl, null);
-            log.Debug($"MAC: '{signature.SignatureSource}'");
-            log.Debug($"HMAC: '{signature.SignatureHash}'");
-            log.Debug("If you get authorization failures compare the values above to the Sitecore logs.");
+            log.Write(Verbosity.Diagnostic, LogLevel.Debug, $"MAC: '{signature.SignatureSource}'");
+            log.Write(Verbosity.Diagnostic, LogLevel.Debug, $"HMAC: '{signature.SignatureHash}'");
+            log.Write(Verbosity.Diagnostic, LogLevel.Debug, "If you get authorization failures compare the values above to the Sitecore logs.");
             return signature.SignatureHash;
         }
 
@@ -51,7 +51,7 @@ namespace Cake.Unicorn
             var responseTextBuilder = new StringBuilder();
             using (var client = new HttpClient())
             {
-                log.Debug($"Executing Unicorn sync with signature {signature} and challenge {challenge}.");
+                log.Write(Verbosity.Diagnostic, LogLevel.Debug, $"Executing Unicorn sync with signature {signature} and challenge {challenge}.");
                 client.DefaultRequestHeaders.Add("X-MC-MAC", signature);
                 client.DefaultRequestHeaders.Add("X-MC-NONCE", challenge);
                 client.Timeout = new TimeSpan(10800000 * TimeSpan.TicksPerMillisecond);
